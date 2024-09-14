@@ -1,5 +1,7 @@
 # Well Defined CLI
 
+[![NPM Version](https://img.shields.io/npm/v/%40welldefined%2Fcli)]()
+
 Command line utilities for working with OpenAPI specs.
 
 # Usage

@@ -8,6 +8,7 @@
     "compile": "tsc"
   },
   "dependencies": {
+    "jq.node": "^3.0.0",
     "js-yaml": "^4.1.0",
     "lodash.isobject": "^3.0.2",
     "lodash.isstring": "^4.0.1",

@@ -1,11 +1,13 @@
 {
   "scripts": {
-    "compile": "tsc -b tsconfig.build.json"
+    "compile": "tsc -b tsconfig.build.json",
+    "fmt": "prettier --write packages/*/src packages/*/bin"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
-    "@changesets/cli": "^2.27.8"
+    "@changesets/cli": "^2.27.8",
+    "prettier": "^3.3.3"
   }
 }

@@ -4,7 +4,7 @@ import isObject from "lodash.isobject";
 import isString from "lodash.isstring";
 import mergeWith from "lodash.mergewith";
 
-interface MergeArgs {
+export interface MergeArgs {
   yamls: string[];
   output?: string;
 }
@@ -13,17 +13,17 @@ const refKey = (obj: any): string | null => {
   if (!isObject(obj)) {
     return null;
   }
-  if ('$ref' in obj && isString(obj['$ref'])) {
-    return obj['$ref'];
+  if ("$ref" in obj && isString(obj["$ref"])) {
+    return obj["$ref"];
   } else {
     return null;
   }
-}
+};
 
 const mergeCommand = async (args: MergeArgs) => {
   let temp = undefined;
   for (const filepath of args.yamls) {
-    const file = await fs.readFile(filepath, {encoding: 'utf8'});
+    const file = await fs.readFile(filepath, { encoding: "utf8" });
     const content = yaml.load(file.toString());
     temp = mergeWith(temp, content, (obj: any, src: any, key: string) => {
       if (Array.isArray(obj) && Array.isArray(src)) {
@@ -49,10 +49,10 @@ const mergeCommand = async (args: MergeArgs) => {
   }
   const merged = yaml.dump(temp);
   if (args.output) {
-    await fs.writeFile(args.output, merged);
+    await fs.writeFile(args.output, merged, { encoding: "utf8" });
   } else {
     console.log(merged);
   }
-}
+};
 
 export default mergeCommand;

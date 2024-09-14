@@ -1,4 +1,5 @@
 lib/
 node_modules/
+packages/cli/README.md
 
 *.tsbuildinfo

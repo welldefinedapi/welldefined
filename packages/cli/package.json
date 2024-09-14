@@ -1,6 +1,6 @@
 {
   "name": "@welldefined/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/welldefinedapi/welldefined",
   "author": "Matthew Tso <~@mtso.io>",
   "bin": {
@@ -19,7 +19,8 @@
     "access": "public"
   },
   "scripts": {
-    "compile": "tsc"
+    "compile": "tsc",
+    "prepublishOnly": "cp ../../README.md ."
   },
   "dependencies": {
     "js-yaml": "^4.1.0",

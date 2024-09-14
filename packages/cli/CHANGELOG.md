@@ -1,5 +1,11 @@
 # @welldefined/cli
 
+## 0.1.1
+
+### Patch Changes
+
+- Adds README to @welldefined/cli package
+
 ## 0.1.0
 
 ### Minor Changes

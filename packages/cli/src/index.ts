@@ -1,6 +1,18 @@
 import * as yargs from "yargs";
 import mergeCommand from "./merge";
-import transform from "./transform";
+import transformMethod from "./transform-method";
+
+const httpMethodChoices = [
+  "get",
+  "head",
+  "options",
+  "trace",
+  "put",
+  "delete",
+  "post",
+  "patch",
+  "connect",
+];
 
 yargs
   .command(
@@ -24,26 +36,44 @@ yargs
       await mergeCommand(argv);
     },
   )
-  .command("transform [yaml]", "Transform a YAML file", (yargs) =>
-    yargs
-      .positional("yaml", {
-        type: "string",
-        demandOption: true,
-      })
-      .option({
-        command: {
-          description:
-            "The jq.node command, refer to the jq.node README for more info.",
-          alias: "c",
+  .command(
+    "transform-method [yaml]",
+    "Transform HTTP methods in a YAML OpenAPI spec",
+    (yargs) =>
+      yargs
+        .positional("yaml", {
+          type: "string",
           demandOption: true,
-          type: "string",
-        },
-        output: {
-          description: "Output file.",
-          alias: "o",
-          type: "string",
-        },
-      }),
-    async (argv) => await transform(argv),
+        })
+        .option({
+          from: {
+            description: "The HTTP method to match and transform from.",
+            alias: "f",
+            demandOption: true,
+            type: "string",
+            choices: httpMethodChoices,
+          },
+          to: {
+            description:
+              "The HTTP method to transform the matching HTTP method to.",
+            alias: "t",
+            demandOption: true,
+            type: "string",
+            choices: httpMethodChoices,
+          },
+          endpoints: {
+            description:
+              "A glob pattern matching the endpoints to apply the transformation to.",
+            alias: "e",
+            type: "string",
+            default: "**",
+          },
+          output: {
+            description: "Output file.",
+            alias: "o",
+            type: "string",
+          },
+        }),
+    async (argv) => await transformMethod(argv),
   )
   .help().argv;

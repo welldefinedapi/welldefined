@@ -1,7 +1,9 @@
 {
   "scripts": {
     "compile": "tsc -b tsconfig.build.json",
-    "fmt": "prettier --write packages/*/src packages/*/bin"
+    "fmt": "prettier --write packages/*/src packages/*/bin",
+    "prepublish": "npm run compile",
+    "publish": "changeset publish"
   },
   "workspaces": [
     "packages/*"

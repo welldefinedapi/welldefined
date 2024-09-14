@@ -4,7 +4,7 @@
 
 Command line utilities for working with OpenAPI specs.
 
-# Usage
+## Usage
 
 ```sh
 npx @welldefined/cli [command] path-to-spec.yaml
@@ -18,9 +18,9 @@ npm install @welldefined/cli -g
 
 Then you can use it as `welldefined [command] [options]`.
 
-# Utilities
+## Utilities
 
-## `merge`
+### `merge`
 
 Merges two or more YAML files. It treats $ref objects as distinct items in an array.
 
@@ -28,7 +28,7 @@ Merges two or more YAML files. It treats $ref objects as distinct items in an ar
 npx @welldefined/cli merge a.yml b.yml --output c.yaml
 ```
 
-## `change-method`
+### `change-method`
 
 Change HTTP methods in a YAML OpenAPI spec.
 
@@ -36,7 +36,7 @@ Change HTTP methods in a YAML OpenAPI spec.
 npx @welldefined/cli change-method path-to-spec.yaml --from post --to patch --endpoints "*/{id}" --output c.yaml
 ```
 
-## `add-parameter`
+### `add-parameter`
 
 Adds a parameter to endpoints in a YAML OpenAPI spec.
 

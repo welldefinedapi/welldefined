@@ -1,5 +1,16 @@
 # @welldefined/cli
 
+## 0.2.0
+
+### Minor Changes
+
+- 8e78e04: Rename `transform-method` to `change-method`
+
+### Patch Changes
+
+- da78473: Handle duplicate parameters in `add-parameter` command.
+  - Require `--force` to overwrite inline parameters where `name` and `in` fields match.
+
 ## 0.1.1
 
 ### Patch Changes

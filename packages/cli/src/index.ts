@@ -17,7 +17,7 @@ const httpMethodChoices = [
 yargs
   .command(
     "merge [yamls...]",
-    "Merge two or more YAML files",
+    "Merge two or more YAML files.",
     (yargs) =>
       yargs
         .positional("yamls", {
@@ -38,7 +38,7 @@ yargs
   )
   .command(
     "transform-method [yaml]",
-    "Transform HTTP methods in a YAML OpenAPI spec",
+    "Transform HTTP methods in a YAML OpenAPI spec.",
     (yargs) =>
       yargs
         .positional("yaml", {
@@ -76,4 +76,6 @@ yargs
         }),
     async (argv) => await transformMethod(argv),
   )
-  .help().argv;
+  .help("help")
+  .alias("h", "help")
+  .alias("v", "version").argv;

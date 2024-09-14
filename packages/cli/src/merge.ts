@@ -20,38 +20,44 @@ const refKey = (obj: any): string | null => {
   }
 };
 
+/**
+ * Handles $ref objects as unique items in an array.
+ * @param obj Destination array
+ * @param src Source array
+ */
+const refMerger = (obj: any, src: any) => {
+  if (Array.isArray(obj) && Array.isArray(src)) {
+    const visited: Record<string, any> = {};
+    for (const item of obj) {
+      const key = refKey(item) ?? JSON.stringify(item);
+      if (key) {
+        visited[key] = true;
+      }
+    }
+    for (const item of src) {
+      const key = refKey(item) ?? JSON.stringify(item);
+      // was a ref and resolved to the same value, so skip
+      if (key && visited[key]) {
+        continue;
+      }
+      obj.push(item);
+    }
+    return obj;
+  }
+};
+
 const mergeCommand = async (args: MergeArgs) => {
-  let temp = undefined;
+  let combined = undefined;
   for (const filepath of args.yamls) {
     const file = await fs.readFile(filepath, { encoding: "utf8" });
     const content = yaml.load(file.toString());
-    temp = mergeWith(temp, content, (obj: any, src: any, key: string) => {
-      if (Array.isArray(obj) && Array.isArray(src)) {
-        const visited: Record<string, any> = {};
-        for (const item of obj) {
-          const key = refKey(item) ?? JSON.stringify(item);
-          if (key) {
-            visited[key] = true;
-          }
-        }
-        for (const item of src) {
-          const key = refKey(item) ?? JSON.stringify(item);
-          // was a ref and resolved to the same value, so skip
-          if (key && visited[key]) {
-            continue;
-          }
-          obj.push(item);
-        }
-        return obj;
-      }
-      // console.log(obj, src, key)
-    });
+    combined = mergeWith(combined, content, refMerger);
   }
-  const merged = yaml.dump(temp);
+  const resultYaml = yaml.dump(combined);
   if (args.output) {
-    await fs.writeFile(args.output, merged, { encoding: "utf8" });
+    await fs.writeFile(args.output, resultYaml, { encoding: "utf8" });
   } else {
-    console.log(merged);
+    console.log(resultYaml);
   }
 };
 

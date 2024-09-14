@@ -110,6 +110,13 @@ yargs
             alias: "o",
             type: "string",
           },
+          force: {
+            description:
+              "Forcefully add parameter, overwriting any existing parameter if the name+in match.",
+            alias: "f",
+            type: "boolean",
+            default: false,
+          },
         }),
     (argv) =>
       addParameter({

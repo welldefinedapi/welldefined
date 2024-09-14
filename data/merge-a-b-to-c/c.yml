@@ -1,0 +1,15 @@
+paths:
+  /objects/{id}:
+    get:
+      parameters:
+        - $ref: '#/components/schemas/Region'
+        - in: path
+          name: id
+          type: string
+      description: Get an object
+components:
+  schemas:
+    Region:
+      name: region
+      in: header
+      type: string

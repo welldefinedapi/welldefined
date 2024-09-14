@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "compile": "tsc -b tsconfig.build.json"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "^2.27.8"
+  }
+}

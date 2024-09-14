@@ -2,7 +2,7 @@ paths:
   /objects/{id}:
     get:
       parameters:
-        - $ref: '#/components/schemas/Region'
+        - $ref: "#/components/schemas/Region"
         - in: path
           name: id
           type: string

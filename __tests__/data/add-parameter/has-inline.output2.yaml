@@ -1,0 +1,19 @@
+paths:
+  /objects/{id}:
+    get:
+      summary: Get an object
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          schema:
+            type: string
+            maxLength: 36
+  /collections/{id}:
+    get:
+      summary: Get a collection
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          schema:
+            type: string
+            maxLength: 36

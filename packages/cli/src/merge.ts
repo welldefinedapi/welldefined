@@ -53,11 +53,14 @@ const mergeCommand = async (args: MergeArgs) => {
     const content = yaml.load(file.toString());
     combined = mergeWith(combined, content, refMerger);
   }
-  const resultYaml = yaml.dump(combined);
+  const resultYaml = yaml.dump(combined, {
+    noRefs: true,
+    quotingType: '"',
+  });
   if (args.output) {
     await fs.writeFile(args.output, resultYaml, { encoding: "utf8" });
   } else {
-    console.log(resultYaml);
+    process.stdout.write(resultYaml);
   }
 };
 

@@ -3,7 +3,7 @@ import yaml from "js-yaml";
 import isObject from "lodash.isobject";
 import { isMatch } from "micromatch";
 
-export interface TransformMethodArgs {
+export interface ChangeMethodArgs {
   yaml: string;
   from: string;
   to: string;
@@ -15,11 +15,11 @@ const finalize = async (data: string, output?: string) => {
   if (output) {
     await fs.writeFile(output, data, { encoding: "utf8" });
   } else {
-    console.log(data);
+    process.stdout.write(data);
   }
 };
 
-export default async function transformMethod(args: TransformMethodArgs) {
+export default async function changeMethod(args: ChangeMethodArgs) {
   const content = await fs.readFile(args.yaml, { encoding: "utf8" });
   const json = yaml.load(content.toString());
 
@@ -32,7 +32,6 @@ export default async function transformMethod(args: TransformMethodArgs) {
   const endpointGlobs = args.endpoints.split(",");
 
   for (const endpoint of endpoints) {
-    // console.debug(endpoint, args.endpoints, isMatch(endpoint, endpointGlobs))
     if (!isMatch(endpoint, endpointGlobs)) {
       continue;
     }
@@ -45,6 +44,9 @@ export default async function transformMethod(args: TransformMethodArgs) {
     delete endpointData[from];
   }
 
-  const resultYaml = yaml.dump(json);
+  const resultYaml = yaml.dump(json, {
+    noRefs: true,
+    quotingType: '"',
+  });
   await finalize(resultYaml, args.output);
 }

@@ -1,0 +1,28 @@
+{
+  "paths": {
+    "/objects/{id}": {
+      "get": {
+        "description": "Get an object",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/collections/{id}": {
+      "get": {
+        "description": "Get a collection",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  }
+}

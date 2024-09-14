@@ -1,0 +1,26 @@
+paths:
+  /objects/{id}:
+    get:
+      summary: Get an object
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - name: Idempotency-Key
+          in: header
+          schema:
+            type: string
+  /collections/{id}:
+    get:
+      summary: Get a collection
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - name: Idempotency-Key
+          in: header
+          schema:
+            type: string
+components:
+  parameters:
+    IdempotencyKey:
+      in: header
+      name: Idempotency-Key
+      schema:
+        type: string

@@ -1,0 +1,7 @@
+paths:
+  /objects/{id}:
+    get:
+      summary: Get an object
+  /collections/{id}:
+    get:
+      summary: Get a collection

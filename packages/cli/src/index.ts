@@ -1,6 +1,6 @@
 import * as yargs from "yargs";
 import mergeCommand from "./merge";
-import transformMethod from "./transform-method";
+import changeMethod from "./change-method";
 import addParameter from "./add-parameter";
 
 const httpMethodChoices = [
@@ -36,8 +36,8 @@ yargs
     (argv) => mergeCommand(argv),
   )
   .command(
-    "transform-method [yaml]",
-    "Transform HTTP methods in a YAML OpenAPI spec.",
+    "change-method [yaml]",
+    "Change HTTP methods in a YAML OpenAPI spec.",
     (yargs) =>
       yargs
         .positional("yaml", {
@@ -73,7 +73,7 @@ yargs
             type: "string",
           },
         }),
-    (argv) => transformMethod(argv),
+    (argv) => changeMethod(argv),
   )
   .command(
     "add-parameter [yaml]",
@@ -125,5 +125,6 @@ yargs
       }),
   )
   .help("help")
+  .alias("transform-method", "change-method")
   .alias("h", "help")
   .alias("v", "version").argv;

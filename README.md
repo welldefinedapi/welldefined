@@ -28,12 +28,12 @@ Merges two or more YAML files. It treats $ref objects as distinct items in an ar
 npx @welldefined/cli merge a.yml b.yml --output c.yaml
 ```
 
-## `transform-method`
+## `change-method`
 
-Transform HTTP methods in a YAML OpenAPI spec.
+Change HTTP methods in a YAML OpenAPI spec.
 
 ```sh
-npx @welldefined/cli transform-method path-to-spec.yaml --from post --to patch --endpoints "*/{id}" --output c.yaml
+npx @welldefined/cli change-method path-to-spec.yaml --from post --to patch --endpoints "*/{id}" --output c.yaml
 ```
 
 ## `add-parameter`

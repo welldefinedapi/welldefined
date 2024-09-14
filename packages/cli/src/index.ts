@@ -1,6 +1,7 @@
 import * as yargs from "yargs";
 import mergeCommand from "./merge";
 import transformMethod from "./transform-method";
+import addParameter from "./add-parameter";
 
 const httpMethodChoices = [
   "get",
@@ -32,9 +33,7 @@ yargs
             type: "string",
           },
         }),
-    async function (argv) {
-      await mergeCommand(argv);
-    },
+    (argv) => mergeCommand(argv),
   )
   .command(
     "transform-method [yaml]",
@@ -74,7 +73,49 @@ yargs
             type: "string",
           },
         }),
-    async (argv) => await transformMethod(argv),
+    (argv) => transformMethod(argv),
+  )
+  .command(
+    "add-parameter [yaml]",
+    "Adds a parameter to endpoints in a YAML OpenAPI spec.",
+    (yargs) =>
+      yargs
+        .positional("yaml", {
+          type: "string",
+          demandOption: true,
+        })
+        .option({
+          parameter: {
+            description: "The parameter to add in YAML format.",
+            alias: "p",
+            type: "string",
+            demandOption: true,
+          },
+          endpoints: {
+            description:
+              "A glob pattern matching the endpoints to apply the transformation to.",
+            alias: "e",
+            type: "string",
+            default: "**",
+          },
+          methods: {
+            description:
+              "A comma separated list of the HTTP methods to apply the parameter to.",
+            alias: "m",
+            type: "string",
+            default: httpMethodChoices.join(","),
+          },
+          output: {
+            description: "Output file.",
+            alias: "o",
+            type: "string",
+          },
+        }),
+    (argv) =>
+      addParameter({
+        ...argv,
+        methods: argv.methods.split(","),
+      }),
   )
   .help("help")
   .alias("h", "help")

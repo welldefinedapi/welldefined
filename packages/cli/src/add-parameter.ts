@@ -99,7 +99,7 @@ export default async function addParameter(args: AddParameterArgs) {
 
   const paths: Record<string, any> = json["paths"];
   const endpoints = Object.keys(paths);
-  const endpointGlobs = args.endpoints.split(",");
+  const endpointGlobs = args.endpoints;
   const parameterJson = yaml.load(args.parameter) as any;
 
   for (const endpoint of endpoints) {

@@ -1,8 +1,8 @@
-# Well Defined CLI
+# Well Defined 🧼
 
 [![NPM Version](https://img.shields.io/npm/v/%40welldefined%2Fcli)](https://www.npmjs.com/package/@welldefined/cli)
 
-Command line utilities for working with OpenAPI specs.
+Command line utilities for creating well-defined OpenAPI specs.
 
 ## Usage
 

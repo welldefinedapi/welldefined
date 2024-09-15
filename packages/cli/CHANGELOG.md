@@ -1,5 +1,11 @@
 # @welldefined/cli
 
+## 0.2.2
+
+### Patch Changes
+
+- Fix handling of brace expansions in endpoint glob matchers (`--endpoints` option)
+
 ## 0.2.1
 
 ### Patch Changes

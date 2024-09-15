@@ -29,7 +29,7 @@ export default async function changeMethod(args: ChangeMethodArgs) {
 
   const paths: Record<string, any> = json["paths"];
   const endpoints = Object.keys(paths);
-  const endpointGlobs = args.endpoints.split(",");
+  const endpointGlobs = args.endpoints;
 
   for (const endpoint of endpoints) {
     if (!isMatch(endpoint, endpointGlobs)) {

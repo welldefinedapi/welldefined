@@ -1,5 +1,11 @@
 # @welldefined/cli
 
+## 0.3.1
+
+### Patch Changes
+
+- Format code
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @welldefined/cli
 
+## 0.3.2
+
+### Patch Changes
+
+- Fix lodash.tostring dependency
+
 ## 0.3.1
 
 ### Patch Changes

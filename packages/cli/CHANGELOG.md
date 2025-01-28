@@ -1,5 +1,11 @@
 # @welldefined/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- Add `change-response-status` command
+
 ## 0.2.2
 
 ### Patch Changes

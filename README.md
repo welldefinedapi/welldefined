@@ -43,3 +43,11 @@ Adds a parameter to endpoints in a YAML OpenAPI spec.
 ```sh
 npx @welldefined/cli add-parameter path-to-spec.yaml --parameter '\$ref: "#/components/parameters/IdempotencyKey"' --methods post,patch,put
 ```
+
+### `change-response-status`
+
+Change response status codes in a YAML OpenAPI spec. The status changed to MUST NOT already be in the endpoint's responses.
+
+```sh
+npx @welldefined/cli change-response-status path-to-spec.yaml --from 202 --to 200 --endpoints "*/{id}" --methods "post"
+```

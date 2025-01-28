@@ -2,6 +2,7 @@ import * as yargs from "yargs";
 import mergeCommand from "./merge";
 import changeMethod from "./change-method";
 import addParameter from "./add-parameter";
+import changeResponseStatus from "./change-response-status";
 
 const httpMethodChoices = [
   "get",
@@ -74,6 +75,51 @@ yargs
           },
         }),
     (argv) => changeMethod(argv),
+  )
+  .command(
+    "change-response-status [yaml]",
+    "Change response statuses in a YAML OpenAPI spec.",
+    (yargs) =>
+      yargs
+        .positional("yaml", {
+          type: "string",
+          demandOption: true,
+        })
+        .option({
+          from: {
+            description: "The response status to match and transform from.",
+            alias: "f",
+            demandOption: true,
+            type: "number",
+          },
+          to: {
+            description:
+              "The response status to transform the matching response status method to.",
+            alias: "t",
+            demandOption: true,
+            type: "number",
+          },
+          endpoints: {
+            description:
+              "A glob pattern matching the endpoints to apply the transformation to.",
+            alias: "e",
+            type: "string",
+            default: "**",
+          },
+          methods: {
+            description:
+              "A glob pattern matching the HTTP methods to apply the transformation to.",
+            alias: "m",
+            type: "string",
+            default: "**",
+          },
+          output: {
+            description: "Output file.",
+            alias: "o",
+            type: "string",
+          },
+        }),
+    (argv) => changeResponseStatus(argv),
   )
   .command(
     "add-parameter [yaml]",

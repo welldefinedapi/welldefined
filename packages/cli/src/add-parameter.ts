@@ -40,7 +40,8 @@ const parameterKey = (obj: any): string | null => {
   } else if (
     "in" in obj &&
     "name" in obj &&
-    isString(obj["in"]) && isString(obj["name"])
+    isString(obj["in"]) &&
+    isString(obj["name"])
   ) {
     return JSON.stringify([obj["name"], obj["in"]]);
   } else {

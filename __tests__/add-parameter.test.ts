@@ -224,6 +224,8 @@ test("add-parameter - has-inline - bail without --force", async () => {
     ],
     folderPath,
   );
-  expect(err).toContain(`Error: Refusing to add a parameter with name+in that's already in the list. Use --force to overwrite the matching parameter. Details: {\"yaml\":\"has-inline.yaml\",\"endpoint\":\"/objects/{id}\",\"method\":\"get\",\"parameters\":[{\"in\":\"header\",\"name\":\"Idempotency-Key\",\"schema\":{\"type\":\"string\"}}],\"additionalParameter\":{\"name\":\"Idempotency-Key\",\"in\":\"header\",\"schema\":{\"type\":\"string\",\"maxLength\":36}}}`);
+  expect(err).toContain(
+    `Error: Refusing to add a parameter with name+in that's already in the list. Use --force to overwrite the matching parameter. Details: {\"yaml\":\"has-inline.yaml\",\"endpoint\":\"/objects/{id}\",\"method\":\"get\",\"parameters\":[{\"in\":\"header\",\"name\":\"Idempotency-Key\",\"schema\":{\"type\":\"string\"}}],\"additionalParameter\":{\"name\":\"Idempotency-Key\",\"in\":\"header\",\"schema\":{\"type\":\"string\",\"maxLength\":36}}}`,
+  );
   expect(out).toBe("");
 });
